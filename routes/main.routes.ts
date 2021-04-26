@@ -1,17 +1,16 @@
-import { Router } from 'express';
-import url from 'url';
+import { Router, Request, Response } from 'express';
 import http from 'http';
 import https from 'https';
 
 const mainRouter = Router();
 
 
-mainRouter.get('/', async (_, res) => {
+mainRouter.get('/', async (_: Request, res: Response) => {
     return res.send('Connected');
   }
 );
 
-mainRouter.get('/images', async (req, res) => {
+mainRouter.get('/images', async (req: Request, res: Response) => {
   const requestUrl = new URL(req.url, req.protocol + '://' + req.headers.host + '/');
   var imageUrl = requestUrl.searchParams.get('url')
   if(imageUrl){
